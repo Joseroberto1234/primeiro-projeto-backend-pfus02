@@ -8,31 +8,48 @@ const port = 5000
 const path = require('path')
 const caminho = path.join(__dirname, "views")
 
+// Importações
+// Importa as rotas de usuário
+const userRoutes = require("./routes/userRoutes")
 
+// Interpretador de json, pra tratar as informações do body
+app.use(express.urlencoded({extende:true}))
+app.use(express.json())
+
+// Cria uma rota principal para as sub rotas de usuário
+app.use("/usuarios", userRoutes)
+
+//Definindo o ejs como template engine
+app.set('view engine', 'ejs')
+
+// Definindo 'atalho' onde buscar as views
+app.set("views", path.join(__dirname, "views"))
+
+//pagina home do site ligação com java e index
 app.get("/home", (req,res) => {
-    res.status(200)
-    res.sendFile(`${caminho}/index.html`)
-})
+    res.status(200).render("index")
 
+})
+// Rota de página inicial
 app.get("/pokemon", (req,res) => {
     res.status(200)
     res.sand("Charizard")
 
 })
 
+// Rota pra quando tentar acessar uma rota que não existe
 app.use((req,res) => {
     res.status(404)
-    res.sendFile(`${caminho}/404.html`)
+    res.render("404")
 })
 
-// Mensagem de texto no chrome
+// Rota inicial do projeto
 app.get("/", (req,res) => {
     res.status(200).send("Olá, parábens conseguiu")
 })
 
 
-// Mensagem no terminal
+// Surbir o servidor
 app.listen(port, () => {
     console.log(`Servidor funcionando em http://localhost:${port}`)
 })
-
