@@ -8,7 +8,7 @@ module.exports = {
   // LOGIN
   // REsponde a requisição mostrando a visualização da tela de login
   formLogin: (req, res) => {
-    res.render("login", { titulo: "titulo"});
+    res.render("login", { titulo: "titulo" });
   },
 
   // Função para levar os dados preenchidos para o model realizar o login
@@ -20,11 +20,16 @@ module.exports = {
 
     // Se não conseguiu logar, manda uma mensagem de erro
     if (!logado) {
-      return res.status(401).json({ mensagem: "Usuário ou senha inválidos" });
+      // return res.status(401).json({ mensagem: "Usuário ou senha inválidos" });
+      res.status(401)
+      res.render("login", {titulo: "Login errado", erro:"Emai ou senha inválidos"})
     }
     // Se conseguiu manda uma mensagem de confirmação
     else {
-      res.json({ mensagem: "Login realizado" });
+      // res.json({ mensagem: "Login realizado" });
+      res.status(200)
+      res.render("index", { titulo: "Bem vindo", usuario: logado.nome})
+
     }
   },
 

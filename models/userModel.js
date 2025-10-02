@@ -7,12 +7,12 @@ let listaUsuarios = db.usuarios
 module.exports = {
     // LOGIN  
     // Função para válidar o login
-    login: (usuario, senha) => {
+    login: (email, senha) => {
         // Busca na lista de usuários, se tem aquele usuário com as informações que ele me passou
-        let logado = listaUsuarios.find(
-            (user) => user.email === usuario && user.senha === senha) || null
+       let logado = listaUsuarios.find(
+            (user) => user.email == email && user.senha == senha) || null
 
-        return logado
+        return logado;
     },
     // CRUD
     // Função para cadastrar um novo usuario

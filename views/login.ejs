@@ -19,32 +19,28 @@
         <form action="/usuarios/login" method="POST">
             <!-- caixinha de email -->
             <label for="inputEmail" class="form-label fs-2 mt-2"> Email</label>
-            <input 
-            type="email" 
-            id="inputEmail" 
-            class="form-control form-control-lg text-center"
-            placeholder="Digite seu email..."
-            >
+            <input type="email" id="inputEmail" class="form-control form-control-lg text-center"
+                placeholder="Digite seu email..." name="email">
             <!-- fim da caixinha de email -->
-           
+
             <!-- caixinha de senha -->
-              <label for="inputSenha" class="form-label fs-2 mt-2">Senha</label>
-              <input 
-              type="password"
-              class="form-control form-control-lg text-center"
-              id="inputSenha"
-              placeholder="Digite sua senha..."
-              name="senha"
-              />            
+            <label for="inputSenha" class="form-label fs-2 mt-2">Senha</label>
+            <input type="password" class="form-control form-control-lg text-center" id="inputSenha"
+                placeholder="Digite sua senha..." name="senha" />
             <!-- fim da caixinha -->
 
-            <!-- botão para enivar os dados -->
-             <button type="submit" class="btn btn-primary btn-lg mt-2">Entrar</button>
+            <!-- Caixinha de alerta só aparece se ele errar o login -->
+            <button type="submit" class="btn btn-primary btn-lg mt-2">Entrar</button>
         </form>
-        <!-- caixinha de alerta -->
-         <div class="alert alert-danger text-center mx-auto mt-3" style="width: 50%;">
-            Usuário ou senha inválido
-         </div>
+
+         <!-- Caixinha de alerta só aparece se ele errar o login -->
+        <% if (typeof erro !== "undefined" ) { %>
+            <!-- caixinha de alerta -->
+            <div class="alert alert-danger text-center mx-auto mt-3" style="width: 50%;">
+                Usuário ou senha inválido
+            </div>
+            <% } %>
+
     </main>
 
     <footer> </footer>
