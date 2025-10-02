@@ -13,6 +13,27 @@ roteador.get("/login", userController.formLogin)
 //Rota pra enviar dados na página de login
 roteador.post("/login", userController.loginUsuario)
 
+// CRUD
+// C = CRIAR NOVO USUÁRIO
+// Rota pra solicitar a página de cadastro
+roteador.get("/cadastrar", userController.formCadastro)
+// Rota pra enviar dados de cadastro
+roteador.post("/cadastrar", userController.salvarUsuario)
+
+
+//R = LER USUÁRIOS
+// Retorna as informações de todos os usuarios
+roteador.get("/", userController.listarUsuarios)
+// Retorna as informações de um usuário apenas
+roteador.get("/:id", userController.buscarUsuario)
+
+
+// U = ATUALIZAR UM USUÁRIO
+roteador.put("/:id", userController.atualizarUsuario)
+
+// DELETAR UM USUÁRIO
+roteador.get("/:id", userController.deletarUsuario)
+
 
 // Criando a exportação desse arquivo 
 module.exports = roteador

@@ -18,6 +18,35 @@
             "email": "joseNS@gmail.com",
             "senha": "13"
         }
-    ]
+    ],
 
+
+
+    "produto" :[
+        {
+           "id": 1,
+           "nome": "biscoito",
+           "descrição": "biscoito bom e barato",
+           "preço": 2.50, 
+           "quantidade": 10, 
+           "categoria": "comida"
+        },
+        {
+           "id": 2,
+           "nome": "tinta",
+           "descrição": "tinta boa e barata",
+           "preço": 50, 
+           "quantidade": 20, 
+           "categoria": "material"
+        },
+        {
+           "id": 3,
+           "nome": "celular",
+           "descrição": "celular bomba e barato",
+           "preço": 1000, 
+           "quantidade": 100, 
+           "categoria": "eletronicos"
+        }
+    
+    ]
 }
