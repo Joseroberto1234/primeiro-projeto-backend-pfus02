@@ -37,14 +37,18 @@ module.exports = {
   // C
   // Responde a requisição mostrando a visualização da tela de cadastro
   formCadastro: (req, res) => {
-    res.render("cadastro", {titulo: "login"});
+    res.render("usuarios/cadastroUsuarios", {titulo: "Cadastro"});
   },
 
   // Função para levar os dados preenchidos para o model realizar o cadastro
   salvarUsuario: (req, res) => {
-    const { usuario, email, senha } = req.body;
-    userModel.salvar({ usuario, email, senha });
-    res.render("cadastroConfirmado");
+    const { usuario, email, senha, tipo } = req.body;
+    usuarioNovo = userModel.salvar({ usuario, email, senha, tipo });
+    res.render("usuarios/confirmacaoUsuarios", {
+      tipo: "cadastro",
+      titulo: "Cadastro confirmado",
+      usuarioNovo
+    });
   },
 
   // R
