@@ -11,8 +11,8 @@ const produtosController = require("../controllers/produtosController")
 
 //C = Criar novo usuario 
 //Rota para solicitar a página de cadastro
-roteador.get("/cadastrar", produtosController.produtocadastro)
 //Rota para enviar dados da página de cadastro
+roteador.get("/cadastrar", produtosController.Cadastrarproduto)
 roteador.post("/cadastrar", produtosController.salveproduto)
 
 

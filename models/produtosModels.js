@@ -1,4 +1,5 @@
  // Importar o json para servir como banco de dados
+const { urlencoded } = require("express");
 const db = require("../data/db.json")
 
 // Variavel pra armazenar os usuários vindos do db 
@@ -9,14 +10,16 @@ module.exports = {
     
     // CRUD
     // Função para cadastrar um novo usuario
-    guardar: ({ nome,  descrição, preço, quantidade, categoria }) => {
+    salve: ({ nome,  descrição, preço, quantidade, categoria, imagem, url }) => {
         const novoProduto= {
             id: listaproduto.length + 1,
            nome,
            descrição,
            preço, 
            quantidade, 
-           categoria
+           categoria,
+           imagem,
+           url
         
         }
         listaproduto.push(novoProduto)

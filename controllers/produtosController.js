@@ -8,20 +8,27 @@ const produtosModel = require("../models/produtosModels")
 module.exports = {
     //Crud
     //Responde a requisição mostrando a visualização da tela de cadastro
-    produtocadastro: (req,res) => {
-      res.render("Entrando")
-    },
+Cadastrarproduto: (req, res) => {
+  res.render("produtos/cadastroProdutos", {titulo: "Cadastro"});
+},
     //FUnção para levar dados preenchidos para o model realizar o cadastro
     salveproduto: (req,res) => {
-      const {nome, descrição, preço, quantidade, categoria} = req.body
-      produtosModel.guardar({nome, descrição, preço, quantidade, categoria})
-      res.render("listagem")
-    },
+      const {nome, descrição, preço, quantidade, categoria, imagem, url} = req.body
+      produtoNovo = produtosModel.salve({nome, descrição, preço, quantidade, categoria, imagem, url});
+      res.render("produtos/confirmacaoProduto", {
+        tipo: "cadastro",
+        titulo: "Cadastro confirmado",
+        produtoNovo
+
+      }
+    
+    )},
     // R
     //Função Mostrar os usuarios
     listaprodutos: (req,res) => {
-      const AProdutos = produtosModel.listarGeral()
-      res.json(AProdutos);
+      const produtos = produtosModel.listarGeral();
+      res.json(produtos);
+      // res.render("produtos", { produtos});
       //res.render("Usuarios",{ usuarios })
     },
     //Função Mostrar so um usuario
@@ -46,7 +53,7 @@ module.exports = {
       //Buscar as novas informações para atualizar 
       const {nome, descrição, preço, quantidade, categoria} = req.body
        //Guarda o usuario atualizado numa variavel 
-      const produtoAtualizado = produtosModel.Renovar(id, {nome, descrição, preço, quantidade, categoria})
+      const produtoAtualizado = produtosModel.Renovar(id, {nome, descrição, preço, quantidade, categoria, imagem})
 
       //se não achar, avisa que deu erro
       if(!produtoAtualizado){
