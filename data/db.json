@@ -2,21 +2,24 @@
     "usuarios" :[
         {
             "id": 1,
-            "nome": "Jose",
+            "usuario": "Jose",
             "email": "jose@gmail.com",
-            "senha": "11"
+            "senha": "11",
+            "tipo" : "Gerente"
         },
         {
           "id": 2,
-            "nome": "joseN",
+            "usuario": "joseN",
             "email": "joseN@gmail.com",
-            "senha": "12"   
+            "senha": "12",
+            "tipo" : "Administrador"
         },
         { 
              "id": 3,
-            "nome": "joseNS",
+            "usuario": "joseNS",
             "email": "joseNS@gmail.com",
-            "senha": "13"
+            "senha": "13",
+            "tipo" : "Funcionario"
         }
     ],
 

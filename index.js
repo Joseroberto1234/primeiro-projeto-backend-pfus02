@@ -27,6 +27,7 @@ app.set('view engine', 'ejs')
 // Definindo 'atalho' onde buscar as views
 app.set("views", path.join(__dirname, "views"))
 
+app.use(express.static('public'))
 //pagina home do site ligação com java e index
 app.get("/home", (req,res) => {
     res.status(200).render("index",{ titulo: "pagina inicial"})
