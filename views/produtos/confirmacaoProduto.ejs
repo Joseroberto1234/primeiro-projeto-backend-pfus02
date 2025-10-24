@@ -17,7 +17,7 @@
      <% } else if (tipo == "edicao") { %>
             <h1 class="text-white">
         <!-- Pega o nome de quem foi atualizado, vindo do objeto atualizado -->
-         edicao de <%- atualiza.produtos %> confirmado
+         edicao de <%= produtoAtualizado.nome %> confirmado
       </h1>
       <!-- Se a página que chamou for a de deletar usuário, mostra que o usuário foi excluido -->
        <% } else { %>
@@ -32,6 +32,8 @@
         <button class="btn btn-lg btn-secondary mx-2">
            Voltar para a lista de produtos
         </button>
+
+        
 
     </a>
 

@@ -1,54 +1,109 @@
 {
-    "usuarios" :[
-        {
-            "id": 1,
-            "usuario": "Jose",
-            "email": "jose@gmail.com",
-            "senha": "11",
-            "tipo" : "Gerente"
-        },
-        {
-          "id": 2,
-            "usuario": "joseN",
-            "email": "joseN@gmail.com",
-            "senha": "12",
-            "tipo" : "Administrador"
-        },
-        { 
-             "id": 3,
-            "usuario": "joseNS",
-            "email": "joseNS@gmail.com",
-            "senha": "13",
-            "tipo" : "Funcionario"
-        }
-    ],
+  "usuarios": [
+    {
+      "id": 1,
+      "usuario": "Jose",
+      "email": "jose@gmail.com",
+      "senha": "11",
+      "tipo": "Gerente"
+    },
+    {
+      "id": 2,
+      "usuario": "joseN",
+      "email": "joseN@gmail.com",
+      "senha": "12",
+      "tipo": "Administrador"
+    },
+    {
+      "id": 3,
+      "usuario": "joseNS",
+      "email": "joseNI@gmail.com",
+      "senha": "13",
+      "tipo": "Funcionario"
+    }
+  ],
 
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Biscoito",
+      "descricao": "biscoito bom e barato",
+      "preco": 2.5,
+      "quantidade": 10,
+      "categoria": "Alimentos",
+      "imagem": "https://img.freepik.com/premium-photo/high-angle-view-cookies-against-black-background_1048944-22674562.jpg"
+    },
+    {
+      "id": 2,
+      "nome": "Tinta",
+      "descricao": "tinta boa e barata",
+      "preco": 50,
+      "quantidade": 20,
+      "categoria": "Eletrodomesticos",
+      "imagem": "https://img.pikbest.com/ai/illus_our/20230428/f72edfae78344be2a810f51af32ee4a8.jpg!w700wp"
+    },
+    {
+      "id": 3,
+      "nome": "Celular",
+      "descricao": "celular bomba e barato",
+      "preco": 1000,
+      "quantidade": 100,
+      "categoria": "eletronicos",
+      "imagem": "https://img.freepik.com/fotos-premium/pessoa-segurando-o-celular-na-mao-isolado-em-fundo-preto_746318-2843.jpg"
+    },
+  
 
-    "produto" :[
-        {
-           "id": 1,
-           "nome": "biscoito",
-           "descrição": "biscoito bom e barato",
-           "preço": 2.50, 
-           "quantidade": 10, 
-           "categoria": "comida"
-        },
-        {
-           "id": 2,
-           "nome": "tinta",
-           "descrição": "tinta boa e barata",
-           "preço": 50, 
-           "quantidade": 20, 
-           "categoria": "material"
-        },
-        {
-           "id": 3,
-           "nome": "celular",
-           "descrição": "celular bomba e barato",
-           "preço": 1000, 
-           "quantidade": 100, 
-           "categoria": "eletronicos"
-        }
-    
-    ]
+    {
+      "id": 4,
+      "nome": "Controle Xbox",
+      "descricao": "Bom",
+      "preco": 300,
+      "quantidade": 100,
+      "categoria": "eletronicos",
+      "imagem": "https://img.freepik.com/fotos-premium/dois-joysticks-de-controladores-de-videogame-para-console-de-jogos-isolados-em-fundo-preto-dispositivos-de-controle-de-jogador-closeup_154092-18344.jpg"
+    },
+
+    {
+      "id": 5,
+      "nome": "PS5",
+      "descricao": "bom",
+      "preco": 5000,
+      "quantidade": 10,
+      "categoria": "eletronicos",
+      "imagem": "https://i.pinimg.com/originals/e2/33/a0/e233a050ed82401651012cf728fe3bc9.jpg"
+    },
+
+    {
+      "id": 6,
+      "nome": "TV",
+      "descricao": "Qualidade 4k",
+      "preco": 2000 ,
+      "quantidade": 5 ,
+      "categoria": "Eletrodomesticos",
+      "imagem": "https://img.freepik.com/fotos-gratis/monitor-moderno-na-mesa-elegante_23-2150706395.jpg"
+},
+
+    {
+      "id": 7,
+      "nome": "Geladeira",
+      "descricao": "Gela rapido",
+      "preco": 2500 ,
+      "quantidade": 10 ,
+      "categoria": "Eletrodomesticos",
+      "imagem": "https://us.123rf.com/450wm/fugacar/fugacar2201/fugacar220101664/180633702-frigor%C3%ADfico-preto-congelador-de-geladeira-no-fundo-preto-ideia-conceito-m%C3%ADnimo-render-3d.jpg?ver=6"
+    },
+
+    {
+      "id": 8,
+      "nome": "Pão",
+      "descricao": "Crocante",
+      "preco": 0.50 ,
+      "quantidade": 200 ,
+      "categoria": "Alimentos",
+      "imagem": "https://img.freepik.com/fotos-premium/pao-branco-em-um-fundo-preto_186673-463.jpg"
+    }
+  ]
 }
+
+
+

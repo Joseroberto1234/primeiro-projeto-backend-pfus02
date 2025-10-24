@@ -67,43 +67,68 @@ module.exports = {
     const usuario = userModel.buscarPorId(id);
     // Se não achar, avisa que deu erro
     if (!usuario) {
-      return res.status(404).json({ mensagem: "Usuário não encontrado" });
-    }
+      return res.status(404).render("usuarios/erroUsuario",{
+       titulo: "Erro",
+       mensagem: "usaurios"
+      })
+    };
+    
     // se achar, devolve as informações via json
-    res.json(usuario);
+    res.render("usuarios/editar", {
+      titulo: "Editar",
+      usuario
+    });
   },
+  
   // Função para atualizar informações de um usuário
   atualizarUsuario: (req, res) => {
     // Busca o id vindo da url como parametro
     const id = req.params.id;
     // Busca as novas informações para atualizar
-    const { usuario, email, senha } = req.body;
+    const { usuario, email, senha, tipo } = req.body;
     //Guarda o usuário atualizado em uma variável
     const usuarioAtualizado = userModel.atualizar(id, {
       usuario,
       email,
       senha,
+      tipo
     });
 
     // Se não achar, avisa que deu erro
     if (!usuarioAtualizado) {
-      return res.status(404).json({ mensagem: "Usuário não encontrado" });
-    }
+      return res.status(404).render("usuarios/erroUsuario",{
+        titulo: "Erro",
+        mensagem: "Não foi possivel atualizar"
+      }
+    )
+  }
     // se atualizar, manda uma mensagem dizendo que deu certo
-    res.json({ mensagem: "Usuário foi atualizado" });
+    res.render("usuarios/confirmacaoUsuarios",{
+      titulo: "Edicao Confirmada",
+      tipo: "edicao",
+      usuarioAtualizado
+    })
   },
   // Função para deletar um usuário
-  deletarUsuario: (req, res) => {
+  deletarUsuario:(req, res) => {
     // Busca o id vindo da url como parametro
     const id = req.params.id;
     //Guarda o usuário deletado em uma variável
     const deletado = userModel.deletar(id);
 
     // Se não achar, avisa que deu erro
-    if (!deletado) {
-      return res.status(404).json({ mensagem: "Usuário não encontrado" });
-    }
-    // se atualizar, manda uma mensagem dizendo que deu certo
-    res.json({ mensagem: "Usuário foi deletado" });
+          if (!deletado) {
+          return res.status(404).render("usuarios/erroUsuario",{
+          titulo: "Erro",
+          mensagem: "Não foi possivel deletar"
+      })
+     }
+    
+    // se deletar, manda uma mensagem dizendo que deu certo
+    res.render("usuarios/confirmacaoUsuarios",{
+      titulo: "Deletado",
+      tipo: "deletar",
+      deletado
+    })
   },
-}
+};

@@ -1,78 +1,112 @@
-//Path tem acesso a tudo, que ele vai usar para saber as pastas e arquivos do projeto 
-const path = require("path")
+// Importa o módulo path (para manipular caminhos de arquivos)
+const path = require("path");
 
-//Importa tudo que tem no model 
-const produtosModel = require("../models/produtosModels")
-
+// Importa o model de produtos
+const produtosModel = require("../models/produtosModels");
 
 module.exports = {
-    //Crud
-    //Responde a requisição mostrando a visualização da tela de cadastro
-Cadastrarproduto: (req, res) => {
-  res.render("produtos/cadastroProdutos", {titulo: "Cadastro"});
-},
-    //FUnção para levar dados preenchidos para o model realizar o cadastro
-    salveproduto: (req,res) => {
-      const {nome, descrição, preço, quantidade, categoria, imagem, url} = req.body
-      produtoNovo = produtosModel.salve({nome, descrição, preço, quantidade, categoria, imagem, url});
-      res.render("produtos/confirmacaoProduto", {
-        tipo: "cadastro",
-        titulo: "Cadastro confirmado",
-        produtoNovo
 
-      }
-    
-    )},
-    // R
-    //Função Mostrar os usuarios
-    listaprodutos: (req,res) => {
-      const produtos = produtosModel.listarGeral();
-      res.json(produtos);
-      // res.render("produtos", { produtos});
-      //res.render("Usuarios",{ usuarios })
-    },
-    //Função Mostrar so um usuario
-    //Req sempre vem primeiro e res depois
-    buscaprodutos: (req,res) => {
-      //Buscar id vindo de url como parametro
-      const id = req.params.id
+  // Mostra a tela de cadastro
+  Cadastrarproduto: (req, res) => {
+    res.render("produtos/cadastroProdutos", { titulo: "Cadastro" });
+  },
 
-      //Guardar o usuario retornado, depois de buscar pelo model
-      const oProdutos = produtosModel.buscarPorId(id)
-      //se não achar, avisa que deu erro
-      if(!oProdutos){
-        return res.status(404).json({mensagem: "produtos não encontrado"})
-      }
-      //se achar, devolve as informações via json
-      res.json(oProdutos)
-    },
-    //Função para atualizar informações de um usuario
-    atualizaProdutos: (req,res) => {
-       //Buscar id vindo de url como parametro
-      const id = req.params.id;
-      //Buscar as novas informações para atualizar 
-      const {nome, descrição, preço, quantidade, categoria} = req.body
-       //Guarda o usuario atualizado numa variavel 
-      const produtoAtualizado = produtosModel.Renovar(id, {nome, descrição, preço, quantidade, categoria, imagem})
+  // Salva o produto no model
+  salveproduto: (req, res) => {
+    const { nome, descricao, preco, quantidade, categoria, imagem, tipo } = req.body;
 
-      //se não achar, avisa que deu erro
-      if(!produtoAtualizado){
-        return res.status(404).json({mensagem: "Produto não encontrado"})
-      }
-      //se atualizar, manda uma mensagem dizendo que deu certo 
-      res.json({mensagem: "Produto foi atualizado"})
-    },
-    // Função para deletar um usuario 
-    deleteProduto: (req,res) => {
-          //Buscar id vindo de url como parametro
-      const id = req.params.id;
 
-      const apagado = produtosModel.deletar(id)
+    const produtoNovo = produtosModel.salve({
+      nome,
+      descricao,
+      preco,
+      quantidade,
+      categoria,
+      imagem,
+      tipo
+    });
 
-       if(!apagado){
-        return res.status(404).json({mensagem: "Produto não encontrado"})
-      }
-      //se atualizar, manda uma mensagem dizendo que deu certo 
-      res.json({mensagem: "Produto foi deletado"})
+    res.render("produtos/confirmacaoProduto", {
+      tipo: "cadastro",
+      titulo: "Cadastro confirmado",
+      produtoNovo
+    });
+  },
+
+
+  listaprodutos: (req, res) => {
+    const produtos = produtosModel.listarGeral();
+    res.render("produtos/listaprodutos", {
+      produtos,
+      titulo: "Lista de produtos"
+    });
+  },
+
+
+  buscaprodutos: (req, res) => {
+    const id = req.params.id;
+
+    // Busca produto pelo ID
+    const produto = produtosModel.buscarPorId(id);
+
+    // Se não encontrar, retorna erro
+    if (!produto) {
+      return res.status(404).render("produtos/erroProdutos", {
+        titulo: "Erro",
+        mensagem: "Produto não encontrado"
+      });
     }
-}
+
+    // Se encontrar, renderiza a view de edição
+    res.render("produtos/editarprodutos", {
+      titulo: "Editar Produto",
+      produto
+    });
+  },
+
+
+  atualizaProdutos: (req, res) => {
+    const id = req.params.id;
+    const { nome, descricao, preco, quantidade, categoria, imagem } = req.body;
+
+    const produtoAtualizado = produtosModel.Renovar(id, {
+      nome,
+      descricao,
+      preco,
+      quantidade,
+      categoria,
+      imagem
+    });
+
+    if (!produtoAtualizado) {
+      return res.status(404).render("produtos/erroProdutos", {
+        titulo: "Erro",
+        mensagem: "Produto não encontrado para atualização"
+      });
+    }
+
+    res.render("produtos/confirmacaoProduto", {
+      titulo: "Edição confirmada",
+      tipo: "edicao",
+      produtoAtualizado
+    });
+  },
+
+  deleteProduto: (req, res) => {
+    const id = req.params.id;
+    const deletado = produtosModel.deletar(id);
+
+    if (!deletado) {
+      return res.status(404).render("produtos/erroProdutos",{
+        titulo: "Erro",
+        mensagem: "Não foi possivel deletar"
+      })
+    }
+  // se deletar, manda uma mensagem dizendo que deu certo
+    res.render("produtos/confirmacaoProduto",{
+      titulo: "Deletado",
+      tipo: "deletar",
+      deletado
+    })
+  },
+};

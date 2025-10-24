@@ -1,7 +1,10 @@
 body{
-    background-color: rgb(187, 185, 187);
+    background-color: rgb(19, 57, 224);
 }
 
 footer{
     background-color: white;
+}
+h1{
+    color: white;
 }

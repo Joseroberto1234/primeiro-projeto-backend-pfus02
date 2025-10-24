@@ -67,8 +67,8 @@
     <!-- Criação do script para função de deletar -->
      <script>
         function confirmaExclusao(nomeUsuario, id){
-            if(confirm('Deseja realmente excluir o usuário ${nomeUsuario}')){
-                window.location.href = '/usuarios/deletar/${id}'
+            if(confirm(`Deseja realmente excluir o usuário ${nomeUsuario}`)){
+                window.location.href = `/usuarios/deletar/${id}`
             }
         }
      </script>

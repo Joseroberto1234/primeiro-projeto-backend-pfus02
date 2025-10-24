@@ -3,23 +3,22 @@ const { urlencoded } = require("express");
 const db = require("../data/db.json")
 
 // Variavel pra armazenar os usuários vindos do db 
-let listaproduto = db.produto
+let listaproduto = db.produtos
 
 module.exports = {
 
     
     // CRUD
     // Função para cadastrar um novo usuario
-    salve: ({ nome,  descrição, preço, quantidade, categoria, imagem, url }) => {
+    salve: ({ nome,  descricao, preco, quantidade, categoria, imagem}) => {
         const novoProduto= {
             id: listaproduto.length + 1,
            nome,
-           descrição,
-           preço, 
+           descricao,
+           preco, 
            quantidade, 
            categoria,
            imagem,
-           url
         
         }
         listaproduto.push(novoProduto)
@@ -35,7 +34,7 @@ module.exports = {
         return listaproduto.find((produto) => produto.id == id || null)
     },
 
-    Renovar: (id, { nome, descricao, preco, quantidade, categoria }) => {
+    Renovar: (id, { nome, descricao, preco, quantidade, categoria, imagem,}) => {
         // Busca nna lista de usuarios, um produto com aquele id especifico, se achar, pega index dele e guarda na variavel index
         const index = listaproduto.findIndex((produto) => produto.id == id)
         // Se achar um usuario, substitui as informações que estava nele, pelas novas emviadas
@@ -43,11 +42,14 @@ module.exports = {
 
         listaproduto[index] = {
             ...listaproduto[index],
-            listaproduto: nome || listaproduto[index].nome,
-            listaproduto: descricao || listaproduto[index].descricao,
-            listaproduto: preco || listaproduto[index].preco,
-            listaproduto: quantidade || listaproduto[index].qunatidade,
-            listaproduto: categoria || listaproduto[index].categoria 
+           nome : nome || listaproduto[index].nome,
+           descricao: descricao || listaproduto[index].descricao,
+           preco: preco || listaproduto[index].preco,
+           quantidade: quantidade || listaproduto[index].quantidade,
+           categoria: categoria || listaproduto[index].categoria,
+           imagem: imagem || listaproduto[index].imagem,
+            
+            
         
         };
         //Retorna o usuario atualizado

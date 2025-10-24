@@ -32,12 +32,14 @@ module.exports = {
     // Busca todos os usuários do banco
     listarTodos: () => {
         return listaUsuarios
+
+
     },
     buscarPorId: (id) => {
         return listaUsuarios.find((user) => user.id == id || null)
     },
 
-    atualizar: (id, { usuario, email, senha }) => {
+    atualizar: (id, { usuario, email, senha, tipo }) => {
         // Busca nna lista de usuarios, um usuario com aquele id especifico, se achar, pega index dele e guarda na variavel index
         const index = listaUsuarios.findIndex((user) => user.id == id)
         // Se achar um usuario, substitui as informações que estava nele, pelas novas emviadas
@@ -45,9 +47,11 @@ module.exports = {
 
         listaUsuarios[index] = {
             ...listaUsuarios[index],
-            listaUsuarios: usuario || listaUsuarios[index].usuario,
-            listaUsuarios: email || listaUsuarios[index].email,
-            listaUsuarios: senha || listaUsuarios[index].senha,
+            usuario: usuario || listaUsuarios[index].usuario,
+            email: email || listaUsuarios[index].email,
+            senha: senha || listaUsuarios[index].senha,
+            tipo: tipo || listaUsuarios[index].tipo,
+
 
         };
         //Retorna o usuario atualizado
